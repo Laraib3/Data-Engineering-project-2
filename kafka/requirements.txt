@@ -1,0 +1,4 @@
+snowflake-connector-python==2.7.12
+google-cloud-bigquery==3.11.4
+cryptography>=3.3.2
+pyOpenSSL>=22.0.0
