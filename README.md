@@ -68,7 +68,7 @@ Data-Engineering-project-2/
 - The `.env` file is required for credentials and configuration.
 - The pipeline is orchestrated for Linux/Mac. For Windows, use WSL or adapt the script.
 - Airflow DAGs are located in `kafka/dags/`.
-- The Kafka consumer script should be present in the root directory as `kafka_consumer_to_snowflake.py` (not shown above).
+- The Kafka consumer script should be present in the root directory as `kafka_consumer_to_snowflake.py`. This script now loads all Kafka and Snowflake configuration from environment variables defined in your `.env` file, making it secure and easy to configure for different environments.
 
 ## .env File Structure
 
