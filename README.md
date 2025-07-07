@@ -92,6 +92,10 @@ GCP_PROJECT_ID=<your-gcp-project-id>
 BIGQUERY_DATASET=<your-bigquery-dataset>
 BIGQUERY_TABLE=<your-bigquery-table>
 GCP_CREDENTIALS_PATH=<absolute/path/to/gcp-credentials.json>
+
+# Airflow Snowflake Connection (used in DAG as `snowflake_conn`)
+AIRFLOW_CONN_SNOWFLAKE_CONN=snowflake://<user name>:<password>@<account>/<schema>/<database>?warehouse=<warehouse>
+
 ```
 
 - Replace all placeholder values with your actual credentials and configuration.
