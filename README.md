@@ -26,7 +26,8 @@ Data-Engineering-project-2/
 ├── setup_requirements.txt          # Python dependencies for setup
 ├── snowsql-1.2.31-linux_x86_64.bash# SnowSQL CLI installer (Linux)
 ├── .env                            # Environment variables (not committed)
-└── README.md                       # Project documentation
+├── README.md                       # Project documentation
+├── kafka_consumer_to_snowflake.py   # Kafka consumer script that loads data into Snowflake (uses .env for config)
 ```
 
 ## Pipeline Overview
@@ -100,11 +101,10 @@ AIRFLOW_CONN_SNOWFLAKE_CONN=snowflake://<user name>:<password>@<account>/<schema
 
 - Replace all placeholder values with your actual credentials and configuration.
 - The `.env` file is required for the pipeline to run successfully.
-- **Never commit your `.env` file to source control.**
 
 ## GCP Credentials JSON Structure
 
-This project requires a `gcp-credentials.json` file for authenticating with Google Cloud Platform (GCP) services such as BigQuery. **Do not commit your actual credentials to version control.**
+This project requires a `gcp-credentials.json` file for authenticating with Google Cloud Platform (GCP) services such as BigQuery.
 
 ### Example Structure
 
@@ -126,10 +126,6 @@ This project requires a `gcp-credentials.json` file for authenticating with Goog
 
 - Replace all placeholder values (e.g., `<your-gcp-project-id>`, `<your-private-key>`) with your actual GCP service account details.
 - This file is typically generated and downloaded from the Google Cloud Console when creating a service account.
-
-**Security Note:**
-- Never commit your real `gcp-credentials.json` to source control.
-- Add `gcp-credentials.json` to your `.gitignore` file to prevent accidental commits.
 
 ## Airflow Snowflake Connection Structure
 
@@ -162,7 +158,7 @@ To connect Airflow to Snowflake (used in DAGs as `snowflake_conn`), configure a 
 To use the SnowSQL CLI, you need to create a configuration file at `~/.snowsql/config` with your Snowflake connection details. Example:
 
 ```ini
-[connections.my_conn]
+[connections.snowflake_conn]
 accountname = <your-snowflake-account>
 username = <your-snowflake-username>
 password = <your-snowflake-password>
@@ -174,11 +170,11 @@ rolename = <your-snowflake-role>
 
 - Replace all placeholder values with your actual Snowflake credentials.
 - This configuration allows you to use the `snowsql` command-line tool for database operations.
-- The connection name (`my_conn`) can be referenced in your scripts or commands.
+- The connection name (`snowflake_conn`) can be referenced in your scripts or commands.
 
 ## SnowSQL CLI Installer
 
-The SnowSQL installer script (`snowsql-1.2.31-linux_x86_64.bash`) should **not** be added to your git repository. Add it to your `.gitignore` to prevent accidental commits.
+The SnowSQL installer script (`snowsql-1.2.31-linux_x86_64.bash`)
 
 ### How to Download and Install SnowSQL
 
